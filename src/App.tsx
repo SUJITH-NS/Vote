@@ -7,6 +7,11 @@ import Login from './components/Login';
 import AdminDashboard from './components/AdminDashboard';
 import UserDashboard from './components/UserDashboard';
 
+export type AuthState = {
+  user: User | null;
+  isAuthenticated: boolean;
+};
+
 function App() {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,

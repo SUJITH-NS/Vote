@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, BarChart3, Users, TrendingUp, LogOut, Eye, Crown, Sparkles, Activity } from 'lucide-react';
 import { User, Poll } from '../types';
-import { storage } from '../utils/storage';
+import { config } from '../config';
 import CreatePoll from './CreatePoll';
 import PollResults from './PollResults';
 
@@ -22,7 +22,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
 
   const loadPolls = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/polls');
+      const response = await fetch(`${config.apiUrl}/api/polls`);
       if (!response.ok) throw new Error('Failed to fetch polls');
       const allPolls = await response.json();
       const userPolls = allPolls.filter((poll: any) => poll.createdBy === user.id);
@@ -59,7 +59,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
     if (!poll) return;
     const updatedPoll = { ...poll, resultsPublished: !poll.resultsPublished };
     try {
-      const response = await fetch(`http://localhost:4000/api/polls/${pollId}`, {
+      const response = await fetch(`${config.apiUrl}/api/polls/${pollId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ resultsPublished: updatedPoll.resultsPublished })
@@ -75,7 +75,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
   const handleDeletePoll = async (pollId: string) => {
     if (window.confirm('Are you sure you want to delete this poll? This action cannot be undone.')) {
       try {
-        await fetch(`http://localhost:4000/api/polls/${pollId}`, { method: 'DELETE' });
+        await fetch(`${config.apiUrl}/api/polls/${pollId}`, { method: 'DELETE' });
         setPolls(prevPolls => prevPolls.filter(poll => poll.id !== pollId));
       } catch (err) {
         // Optionally show error

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
   import { LogOut, Search, Zap, Target, Star, Trophy } from 'lucide-react';
   import JoinPoll from './JoinPoll';
   import { storage } from '../utils/storage';
+  import { config } from '../config';
 
   interface UserDashboardProps {
     user: User;
@@ -19,7 +20,7 @@ import React, { useState } from 'react';
       // Fetch attended polls from backend
       const fetchAttendedPolls = async () => {
         try {
-          const response = await fetch(`http://localhost:4000/api/attended-polls/${user.id}`);
+          const response = await fetch(`${config.apiUrl}/attended-polls/${user.id}`);
           if (response.ok) {
             const polls = await response.json();
             setAttendedPolls(polls);
@@ -62,7 +63,6 @@ import React, { useState } from 'react';
         </div>
       );
     }
-
     return (
       <div className="min-h-screen p-4">
         <div className="max-w-5xl mx-auto stagger-animation">
