@@ -58,7 +58,7 @@ const CreatePoll: React.FC<CreatePollProps> = ({ user, onPollCreated, onBack }) 
         username: user.username // Pass username for createdByUsername
       };
       // Send poll to backend
-      const response = await fetch(`${config.apiUrl}/api/polls`, {
+      const response = await fetch('https://vote-9nmi.onrender.com/api/polls', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newPoll)

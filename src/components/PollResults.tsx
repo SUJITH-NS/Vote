@@ -21,7 +21,7 @@ const PollResults: React.FC<PollResultsProps> = ({ poll, onBack, showUserView = 
       if (currentUser && poll.createdBy === currentUser.id) {
         setLoadingVotes(true);
         try {
-          const response = await fetch(`http://localhost:4000/api/votes/poll/${poll.id}`);
+          const response = await fetch(`https://vote-9nmi.onrender.com/api/votes/poll/${poll.id}`);
           if (response.ok) {
             const data = await response.json();
             setVotes(data);
@@ -41,7 +41,7 @@ const PollResults: React.FC<PollResultsProps> = ({ poll, onBack, showUserView = 
     // Fetch votes for this poll from backend and count per option
     const fetchVotes = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/votes/poll/${poll.id}`);
+        const response = await fetch(`https://vote-9nmi.onrender.com/api/votes/poll/${poll.id}`);
         if (response.ok) {
           const votes = await response.json();
           const counts: { [optionId: string]: number } = {};

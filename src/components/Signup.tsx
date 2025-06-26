@@ -35,7 +35,7 @@ const Signup: React.FC<SignupProps> = ({ onSignupSuccess }) => {
 
     try {
       // Send signup data to backend
-      const response = await fetch('http://localhost:4000/api/users', {
+      const response = await fetch('https://vote-9nmi.onrender.com/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

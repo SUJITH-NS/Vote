@@ -27,7 +27,7 @@ const JoinPoll: React.FC<JoinPollProps> = ({ pollId, user, onBack }) => {
     setPoll(null);
     setHasVoted(false);
     try {
-      const response = await fetch(`http://localhost:4000/api/polls/${pollId}`);
+      const response = await fetch(`https://vote-9nmi.onrender.com/api/polls/${pollId}`);
       if (!response.ok) {
         setError('Poll not found. Please check the Poll ID and try again.');
         return;
@@ -39,7 +39,7 @@ const JoinPoll: React.FC<JoinPollProps> = ({ pollId, user, onBack }) => {
       }
       setPoll(foundPoll);
       // Check if user has already voted (fetch from backend)
-      const voteRes = await fetch(`http://localhost:4000/api/votes/poll/${pollId}`);
+      const voteRes = await fetch(`https://vote-9nmi.onrender.com/api/votes/poll/${pollId}`);
       if (voteRes.ok) {
         const votes = await voteRes.json();
         const userHasVoted = votes.some((v: any) => v.userId === user.id);
@@ -56,7 +56,7 @@ const JoinPoll: React.FC<JoinPollProps> = ({ pollId, user, onBack }) => {
     setError('');
     try {
       // Send vote to backend
-      const response = await fetch('http://localhost:4000/api/votes', {
+      const response = await fetch('https://vote-9nmi.onrender.com/api/votes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

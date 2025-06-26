@@ -22,7 +22,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onBackToSignup }) => {
 
     try {
       // Fetch users from backend
-      const response = await fetch('http://localhost:4000/api/users');
+      const response = await fetch('https://vote-9nmi.onrender.com/api/users');
       if (!response.ok) {
         setError('Failed to connect to server');
         setIsLoading(false);
