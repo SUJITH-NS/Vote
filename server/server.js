@@ -9,7 +9,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://sujith:123@vote.hwuueei.mongodb.net/vote?retryWrites=true&w=majority';
+
+console.log('MongoDB URI:', MONGODB_URI ? 'Found' : 'Not found');
 
 app.use(cors());
 app.use(bodyParser.json());
