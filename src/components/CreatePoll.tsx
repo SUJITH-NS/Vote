@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Plus, Trash2, Save, Sparkles, Target, Zap } from 'lucide-react';
 import { User, Poll, PollOption } from '../types';
+import { config } from '../config';
 
 interface CreatePollProps {
   user: User;
@@ -57,7 +58,7 @@ const CreatePoll: React.FC<CreatePollProps> = ({ user, onPollCreated, onBack }) 
         username: user.username // Pass username for createdByUsername
       };
       // Send poll to backend
-      const response = await fetch('http://localhost:4000/api/polls', {
+      const response = await fetch(`${config.apiUrl}/api/polls`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newPoll)

@@ -10,9 +10,7 @@ const devConfig: Config = {
 
 // Production environment
 const prodConfig: Config = {
-  apiUrl: import.meta.env.PROD
-    ? 'https://your-backend-url.onrender.com' // Replace with your actual Render URL
-    : 'http://localhost:4000'
+  apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:4000'
 };
 
 // Export the appropriate config based on environment
